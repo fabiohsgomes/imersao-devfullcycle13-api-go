@@ -52,3 +52,11 @@ func (t *Transaction) AddBuyOrderPendingShares(shares int) {
 func (t *Transaction) AddSellOrderPendingShares(shares int) {
 	t.SellingOrder.PendingShares += shares
 }
+
+func (t *Transaction) UpdateSellingOrderInvestor(minShares int) {
+	t.SellingOrder.Investor.UpdateAssetPosition(t.SellingOrder.Asset.ID, minShares)
+}
+
+func (t *Transaction) UpdateBuyingOrderInvestor(minShares int) {
+	t.BuyingOrder.Investor.UpdateAssetPosition(t.BuyingOrder.Asset.ID, minShares)
+}
